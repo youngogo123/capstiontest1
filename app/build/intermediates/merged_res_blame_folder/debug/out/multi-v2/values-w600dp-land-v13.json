@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "ko.co.company.mylogin2.app-mergeDebugResources-32:/values-w600dp-land-v13/values-w600dp-land-v13.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\사용자\\.gradle\\caches\\transforms-3\\854d220d21b906b6b5bb032b36fdeb08\\transformed\\material-1.9.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "54",
+                        "endOffsets": "105"
+                    }
+                }
+            ]
+        }
+    ]
+}
