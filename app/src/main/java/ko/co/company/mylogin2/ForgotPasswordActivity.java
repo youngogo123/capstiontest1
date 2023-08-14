@@ -25,6 +25,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
 
 
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +48,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         //유효성 검사추가
         String txtEmail = edit_email.getText().toString().trim();
 
-        if (Patterns.EMAIL_ADDRESS.matcher(txtEmail).matches()){
-            edit_email.setError("유효한 email을 입력하세요");
-            edit_email.requestFocus();
-            return;
-        }
         mAuth.sendPasswordResetEmail(txtEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

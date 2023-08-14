@@ -27,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseREf; //실시간 데이터베이스 인증
     private EditText mEtmail, mEtpwd;
     private Button mBtnRegister;
+    String TAG = "RES";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +70,18 @@ public class RegisterActivity extends AppCompatActivity {
                 String strEmail = mEtmail.getText().toString();
                 String strpwd = mEtpwd.getText().toString();
 
+                Log.d(TAG, " 버튼 클릭 직후");
+
                 //파이어베이스 인증 진행Auth
                 mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strpwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, " onComplete 진입");
+
                         if(task.isSuccessful()){
-                            FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+                            Log.d(TAG, " task 진입");
+
+                            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                             UserAccount account = new UserAccount();
                             account.setIdToken(firebaseUser.getUid());//무작위 아이디 토큰 생성 방지
                             account.setEmailID(firebaseUser.getEmail());
@@ -83,7 +90,11 @@ public class RegisterActivity extends AppCompatActivity {
                             mDatabaseREf.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
                             Toast.makeText(RegisterActivity.this, "회원가입에 성공했습니다", Toast.LENGTH_SHORT).show();
 
-                        }else  Toast.makeText(RegisterActivity.this, "회원가입에 실패했습니다", Toast.LENGTH_SHORT).show();
+                        }else  {
+                            Log.d(TAG, " task 실패");
+
+                            Toast.makeText(RegisterActivity.this, "회원가입에 실패했습니다", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }

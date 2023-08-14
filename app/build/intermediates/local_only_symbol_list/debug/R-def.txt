@@ -16,6 +16,10 @@ id btn_regist
 id edit_email
 id et_email
 id et_pwd
+id mBtnLogin
+id mBtnRegister
+id mEtmail
+id mEtpwd
 layout activity_forgot_password
 layout activity_login
 layout activity_main

@@ -3307,6 +3307,10 @@ id linear
 id listMode
 id list_item
 id m3_side_sheet
+id mBtnLogin
+id mBtnRegister
+id mEtmail
+id mEtpwd
 id marquee
 id masked
 id match_constraint

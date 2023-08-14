@@ -43,10 +43,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        mEtmail = findViewById(R.id.et_email);
-        mEtpwd = findViewById(R.id.et_pwd);
-        mBtnRegister = findViewById(R.id.btn_regist);
-        mBtnLogin = findViewById(R.id.btn_login);
+        mEtmail = findViewById(R.id.mEtmail);
+        mEtpwd = findViewById(R.id.mEtpwd);
+        mBtnRegister = findViewById(R.id.mBtnRegister);
+        mBtnLogin = findViewById(R.id.mBtnLogin);
         Btn_forgotPassword = findViewById(R.id.Btn_forgotPassword);
 
         
