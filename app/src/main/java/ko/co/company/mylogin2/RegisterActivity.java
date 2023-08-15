@@ -3,6 +3,7 @@ package ko.co.company.mylogin2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,27 +34,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // Write a message to the database 파이어베이스 쓰기
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("Hello, World!!");
-
-        //파이어베이스 읽기
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String value = snapshot.getValue(String.class);
-                Log.w("read o", "Value is :"+ value);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                //읽기실패
-                Log.w("read x","Failed to read value",error.toException());
-            }
-        });
-
-
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseREf = FirebaseDatabase.getInstance().getReference();
@@ -74,14 +54,10 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
-                            UserAccount account = new UserAccount();
-                            account.setIdToken(firebaseUser.getUid());//무작위 아이디 토큰 생성 방지
-                            account.setEmailID(firebaseUser.getEmail());
-                            account.setPassword(strpwd);
 
-                            mDatabaseREf.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
+
                             Toast.makeText(RegisterActivity.this, "회원가입에 성공했습니다", Toast.LENGTH_SHORT).show();
+                             finish();
 
                         }else  Toast.makeText(RegisterActivity.this, "회원가입에 실패했습니다", Toast.LENGTH_SHORT).show();
                     }
